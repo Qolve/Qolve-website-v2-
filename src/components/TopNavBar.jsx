@@ -27,27 +27,27 @@ export default function TopNavBar({ onInquireClick }) {
         <div className="hidden md:flex space-x-gutter">
           <a
             className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/10 hover:backdrop-blur-md transition-all duration-300 px-4 py-2 rounded scale-[0.99] active:scale-95 transition-transform"
-            href="#heritage"
+            href="#platform"
           >
-            Heritage
+            Platform
           </a>
           <a
             className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/10 hover:backdrop-blur-md transition-all duration-300 px-4 py-2 rounded scale-[0.99] active:scale-95 transition-transform"
-            href="#materials"
+            href="#white-label"
           >
-            Materials
+            White-Label
           </a>
           <a
             className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/10 hover:backdrop-blur-md transition-all duration-300 px-4 py-2 rounded scale-[0.99] active:scale-95 transition-transform"
-            href="#collection"
+            href="#architecture"
           >
-            Collection
+            Architecture
           </a>
           <a
             className="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors hover:bg-white/10 hover:backdrop-blur-md transition-all duration-300 px-4 py-2 rounded scale-[0.99] active:scale-95 transition-transform"
-            href="#sustainability"
+            href="#enterprise"
           >
-            Sustainability
+            Enterprise
           </a>
         </div>
 
@@ -55,7 +55,7 @@ export default function TopNavBar({ onInquireClick }) {
           onClick={onInquireClick}
           className="bg-primary-container text-primary font-body-md text-body-md px-6 py-2 rounded-full border border-white/10 hover:bg-white/10 hover:backdrop-blur-md hover:text-on-surface transition-all duration-300 scale-[0.99] active:scale-95 transition-transform cursor-pointer"
         >
-          Inquire
+          Book Consultation
         </button>
       </div>
     </nav>

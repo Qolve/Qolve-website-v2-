@@ -16,23 +16,23 @@ export default function HeroSection({ onExploreClick, onViewFilmClick }) {
       {/* Glass Hero Card */}
       <div className="relative z-20 w-[90%] md:w-[70%] max-w-[800px] glass-panel rounded-2xl p-8 md:p-16 text-center transform translate-y-8 opacity-0 animate-fade-up">
         <h1 className="font-display-lg text-display-lg text-on-surface mb-6 text-glow">
-          The Architecture of Nature
+          The Architecture of White-Label
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto mb-10">
-          Precision engineering meets raw, untamed elements. Experience technology that breathes with the earth.
+          Enterprise multi-tenant software infrastructure engineered to seamlessly power your brand. Launch bespoke digital platforms with native reliability.
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <button
             onClick={onExploreClick}
             className="bg-primary-container text-on-primary-container border border-white/10 px-8 py-4 rounded-lg font-body-md text-body-md hover:bg-opacity-80 transition-all w-full sm:w-auto cursor-pointer"
           >
-            Explore Collection
+            Explore Platform
           </button>
           <button
             onClick={onViewFilmClick}
             className="glass-panel px-8 py-4 rounded-lg font-body-md text-body-md text-on-surface hover:bg-white/5 transition-all w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[18px]">play_arrow</span> View Film
+            <span className="material-symbols-outlined text-[18px]">play_arrow</span> View Architecture
           </button>
         </div>
       </div>

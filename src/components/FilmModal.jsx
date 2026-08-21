@@ -21,10 +21,10 @@ export default function FilmModal({ isOpen, onClose }) {
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <span className="inline-block bg-primary-container/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-widest border border-primary/20">
-              Cinematic Narrative
+              Architecture Overview
             </span>
             <span className="text-xs font-label-sm text-on-surface-variant uppercase tracking-wider">
-              4K HDR • 60 FPS
+              Multi-Tenant System Blueprint
             </span>
           </div>
 
@@ -41,9 +41,9 @@ export default function FilmModal({ isOpen, onClose }) {
                 <span className="material-symbols-outlined text-[32px]">play_arrow</span>
               </div>
               <div>
-                <h4 className="font-headline-lg text-headline-lg text-on-surface text-glow">The Qolve Chronicle</h4>
+                <h4 className="font-headline-lg text-headline-lg text-on-surface text-glow">The Qolve Multi-Tenant Architecture</h4>
                 <p className="font-body-md text-sm text-on-surface-variant max-w-md mt-1">
-                  Witness the fusion of ancient botanical material harvesting and cryogenic liquid glass fabrication.
+                  Inspect how automated custom CNAME routing, isolated tenant data partitions, and dynamic tokenized stylesheets operate seamlessly at enterprise scale.
                 </p>
               </div>
             </div>

@@ -11,22 +11,22 @@ export default function Footer({ onInquireClick }) {
         <a className="text-on-secondary-fixed-variant hover:text-primary transition-colors duration-200" href="#privacy">
           Privacy Policy
         </a>
-        <a className="text-on-secondary-fixed-variant hover:text-primary transition-colors duration-200" href="#ethical-sourcing">
-          Ethical Sourcing
+        <a className="text-on-secondary-fixed-variant hover:text-primary transition-colors duration-200" href="#sla">
+          Enterprise SLAs
+        </a>
+        <a className="text-on-secondary-fixed-variant hover:text-primary transition-colors duration-200" href="#architecture">
+          White-Label Engine
         </a>
         <button
           onClick={onInquireClick}
           className="text-on-secondary-fixed-variant hover:text-primary transition-colors duration-200 uppercase tracking-widest cursor-pointer"
         >
-          Contact
+          Book Consultation
         </button>
-        <a className="text-on-secondary-fixed-variant hover:text-primary transition-colors duration-200" href="#showroom">
-          Showroom
-        </a>
       </div>
       
       <div className="mt-6 md:mt-0 text-on-secondary-fixed-variant">
-        © 2024 QOLVE LUXURY ECO. ALL RIGHTS RESERVED.
+        © 2024 QOLVE TECHNOLOGIES. ALL RIGHTS RESERVED.
       </div>
     </footer>
   );
