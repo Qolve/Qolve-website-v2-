@@ -1,219 +1,323 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function ProductsPage({ onInquireClick }) {
-  const handleScrollToModules = () => {
-    const el = document.getElementById('product-modules');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [activePreviewTheme, setActivePreviewTheme] = useState('emerald');
+
+  const categories = [
+    { id: 'all', label: 'All Modules' },
+    { id: 'support', label: 'Customer Support' },
+    { id: 'theming', label: 'Design & Theming' },
+    { id: 'security', label: 'Security & Auth' },
+    { id: 'developer', label: 'Developer & APIs' },
+  ];
+
+  const modules = [
+    {
+      id: 'support-hub',
+      category: 'support',
+      number: '01',
+      title: 'Support & Helpdesk Hub',
+      badge: 'Customer Operations',
+      icon: 'support_agent',
+      desc: 'Enterprise multi-tenant ticketing system with automated client workspace isolation, shared & private inboxes, and real-time SLA breach tracking.',
+      highlights: ['Custom CNAME routing with automated SSL', 'Shared triage & private escalation queues', 'Transactional email relay with zero vendor trace', 'Automated ticket tagging & routing rules'],
+      metrics: { latency: '< 15ms', availability: '99.99%', isolation: 'Tenant Sharded' }
+    },
+    {
+      id: 'theme-engine',
+      category: 'theming',
+      number: '02',
+      title: 'Dynamic Brand & Style Engine',
+      badge: 'UI Infrastructure',
+      icon: 'palette',
+      desc: 'Runtime design token and stylesheet engine. Inject custom typography, color palettes, dark/light modes, and brand assets dynamically per client domain without rebuilding.',
+      highlights: ['Zero-rebuild CSS variable injection', 'Subdomain-based asset & logo mapping', 'Dark mode & high-contrast compliance', 'Client-facing live branding sandbox'],
+      metrics: { compileTime: '0 ms', tokenSync: 'Real-time', contrast: 'WCAG 2.2 AA' }
+    },
+    {
+      id: 'identity-sso',
+      category: 'security',
+      number: '03',
+      title: 'Enterprise Identity (SSO) & RBAC',
+      badge: 'Security Core',
+      icon: 'shield_lock',
+      desc: 'Cryptographically separated authentication layer supporting enterprise identity providers, custom role definitions, and strict workspace isolation.',
+      highlights: ['SAML 2.0 & OpenID Connect (OIDC)', 'Granular role-based permissions (RBAC)', 'Passkey & hardware MFA support', 'Immutable tenant audit logs'],
+      metrics: { protocol: 'SAML 2.0 / OIDC', audit: 'Immutable', compliance: 'SOC-2 Ready' }
+    },
+    {
+      id: 'developer-mesh',
+      category: 'developer',
+      number: '04',
+      title: 'Developer Gateway & Webhook Mesh',
+      badge: 'Integration Layer',
+      icon: 'api',
+      desc: 'High-throughput REST and GraphQL endpoints designed for bi-directional data synchronization, automated tenant provisioning, and event dispatch.',
+      highlights: ['HMAC-SHA256 signed event delivery', 'Automated OpenAPI 3.1 & SDK generation', 'Per-tenant rate limiting and quota management', 'Sub-20ms edge proxy routing'],
+      metrics: { throughput: '10k+ req/s', signatures: 'HMAC-SHA256', proxy: 'Edge Native' }
+    },
+  ];
+
+  const filteredModules = activeCategory === 'all'
+    ? modules
+    : modules.filter((m) => m.category === activeCategory);
+
+  const themeVariants = {
+    emerald: { bg: 'bg-[#18362a]', text: 'text-[#adcebd]', border: 'border-[#adcebd]/30', label: 'Obsidian Pine' },
+    amber: { bg: 'bg-[#402d23]', text: 'text-[#d4aa8f]', border: 'border-[#d4aa8f]/30', label: 'Aged Cedar' },
+    slate: { bg: 'bg-[#282a29]', text: 'text-[#e2e3e0]', border: 'border-white/20', label: 'Charcoal Mineral' },
   };
 
   return (
-    <div>
-      {/* Hero Section (Matching Main Page Exact Aesthetic & Background) */}
-      <header className="relative w-full h-screen min-h-[800px] flex items-center justify-center pt-24 overflow-hidden">
-        {/* Background Image with Cinematic Misty Forest */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/50 via-transparent to-surface-container-lowest z-10" />
-          <img
-            className="w-full h-full object-cover object-center filter brightness-50"
-            alt="A sweeping, high-contrast landscape of a dense, dark pine forest shrouded in thick morning mist."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3_IwyDDEu2iR0PwxGnCgEkEiC3xbnNva-n67iqLUKtETwU_ATPbichJVinPzVQ-syg9Lnufus6zfRkQr06ixrjk_xW09BItgb4N8W4x-xaBBLh2WDEVyRNui4h3xEjdrRbhaTLuz1oUEKjkmtJ3gSMs8pSGGEYsWUIqo8GfGpGo_XZXxoAvX1PgHKjFjNB2YjOG6QHXLDdNf0sAeV4ImqzwSKhE6Ty8JC7vi4NOgUkm9wt57iT4YLHQ"
-          />
-        </div>
-
-        {/* Glass Hero Card */}
-        <div className="relative z-20 w-[90%] md:w-[70%] max-w-[800px] glass-panel rounded-2xl p-8 md:p-16 text-center transform translate-y-8 opacity-0 animate-fade-up">
-          <span className="inline-block bg-primary-container/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-widest border border-primary/20 mb-6">
-            Platform Suite // 2026
+    <div className="pt-32 pb-stack-xl px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-20">
+      {/* Editorial Header (Distinct from Home) */}
+      <div className="space-y-6 max-w-3xl">
+        <div className="flex items-center gap-3">
+          <span className="inline-block bg-primary-container/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-widest border border-primary/20">
+            Platform Suite // Modular Architecture
           </span>
-          <h1 className="font-display-lg text-display-lg text-on-surface mb-6 text-glow">
-            Modular Platform Systems
-          </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto mb-10">
-            Precision white-label software products engineered for enterprise multi-tenancy. Deploy standalone or unified under your custom domain.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <button
-              onClick={handleScrollToModules}
-              className="bg-primary-container text-on-primary-container border border-white/10 px-8 py-4 rounded-lg font-body-md text-body-md hover:bg-opacity-80 transition-all w-full sm:w-auto cursor-pointer"
-            >
-              Explore Modules
-            </button>
-            <button
-              onClick={onInquireClick}
-              className="glass-panel px-8 py-4 rounded-lg font-body-md text-body-md text-on-surface hover:bg-white/5 transition-all w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span className="material-symbols-outlined text-[18px]">calendar_today</span> Inquire for Module
-            </button>
-          </div>
+          <span className="text-xs font-mono text-on-surface-variant/70">
+            v2.4 Production
+          </span>
         </div>
-      </header>
 
-      {/* Series 02: Core Products Bento Section */}
-      <section id="product-modules" className="relative w-full py-stack-xl bg-surface-container-low overflow-hidden">
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
-          <div className="mb-16 md:mb-24 text-center md:text-left">
-            <span className="inline-block bg-primary-container/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-widest border border-primary/20 mb-6">
-              Series 02 // Product Modules
+        <h1 className="font-display-lg text-display-lg text-on-surface text-glow leading-tight">
+          White-Label Infrastructure.
+        </h1>
+
+        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          Every component is engineered as a standalone, brandable building block. Connect individual modules into existing architectures or deploy as a unified multi-tenant platform.
+        </p>
+
+        {/* Category Pill Filters */}
+        <div className="flex flex-wrap gap-2 pt-4">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 cursor-pointer ${
+                activeCategory === cat.id
+                  ? 'bg-primary-container text-primary border border-primary/30 shadow-sm'
+                  : 'glass-panel text-on-surface-variant hover:text-on-surface hover:bg-white/5'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Interactive Interactive Modules Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+        {filteredModules.map((item) => (
+          <div
+            key={item.id}
+            className="glass-panel rounded-2xl p-8 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-all duration-300 relative overflow-hidden"
+          >
+            {/* Subtle ambient lighting behind glass */}
+            <div className="absolute top-0 right-0 w-48 h-48 bg-primary-container/10 rounded-full blur-[80px] pointer-events-none" />
+
+            <div className="space-y-6 relative z-10">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center border border-primary/20 text-primary">
+                  <span className="material-symbols-outlined text-[24px]">{item.icon}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs text-on-surface-variant/60">
+                    MODULE {item.number}
+                  </span>
+                  <span className="font-label-sm text-xs text-primary bg-primary-container/20 px-3 py-1 rounded-full border border-primary/20">
+                    {item.badge}
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <h2 className="font-headline-lg text-headline-lg text-on-surface mb-2">
+                  {item.title}
+                </h2>
+                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+
+              {/* Capabilities checklist */}
+              <div className="space-y-2.5 pt-2 border-t border-white/5">
+                <div className="text-xs uppercase tracking-wider font-label-sm text-on-surface-variant">
+                  Architectural Capabilities:
+                </div>
+                <ul className="space-y-2">
+                  {item.highlights.map((h, idx) => (
+                    <li key={idx} className="flex items-center gap-2.5 text-sm text-on-surface">
+                      <span className="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Metrics Pill Row */}
+              <div className="grid grid-cols-3 gap-2 pt-2">
+                {Object.entries(item.metrics).map(([key, val]) => (
+                  <div key={key} className="p-3 rounded-lg bg-surface-container-highest/20 border border-white/5">
+                    <div className="text-[10px] font-mono uppercase text-on-surface-variant/70">
+                      {key}
+                    </div>
+                    <div className="text-xs font-semibold font-mono text-on-surface mt-0.5">
+                      {val}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-8 mt-6 border-t border-white/10 flex items-center justify-between relative z-10">
+              <span className="font-label-sm text-xs text-on-surface-variant font-mono">
+                Production Ready
+              </span>
+              <button
+                onClick={onInquireClick}
+                className="inline-flex items-center text-primary font-body-md text-sm hover:text-primary-fixed transition-colors cursor-pointer group-hover:translate-x-1 duration-200"
+              >
+                Inquire for Module <span className="material-symbols-outlined ml-1.5 text-[16px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Interactive Theming & White-Label Demo Sandbox */}
+      <div className="glass-panel rounded-2xl p-8 md:p-12 relative overflow-hidden space-y-8 bg-surface-container-low">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-6">
+          <div>
+            <span className="font-label-sm text-xs text-primary uppercase tracking-widest">
+              Interactive Preview // White-Label Theming
             </span>
-            <h2 className="font-headline-xl text-headline-xl text-on-surface mb-4">
-              The Product Ecosystem
-            </h2>
-            <p className="font-body-md text-body-md text-on-surface-variant max-w-md">
-              Discrete, high-performance software modules engineered for seamless white-label integration.
-            </p>
+            <h3 className="font-headline-lg text-headline-lg text-on-surface mt-1">
+              Zero-Trace Brand Switching
+            </h3>
           </div>
 
-          {/* Module Bento Grid 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-            {/* Primary Feature Card: Support Hub (Col 8) */}
-            <div className="col-span-1 md:col-span-8 glass-panel rounded-2xl p-6 md:p-12 relative overflow-hidden group min-h-[460px] flex flex-col justify-between">
-              <div className="absolute inset-0 z-0 bg-gradient-to-br from-surface-container-highest/40 via-surface-container-high/20 to-transparent pointer-events-none" />
-              <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary-container/15 rounded-full blur-[100px] pointer-events-none" />
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono text-on-surface-variant mr-2">Simulate Tenant:</span>
+            {Object.keys(themeVariants).map((themeKey) => (
+              <button
+                key={themeKey}
+                onClick={() => setActivePreviewTheme(themeKey)}
+                className={`px-3 py-1.5 rounded-full text-xs font-mono border transition-all cursor-pointer ${
+                  activePreviewTheme === themeKey
+                    ? 'bg-white/15 text-on-surface border-white/30 shadow-sm'
+                    : 'bg-white/5 text-on-surface-variant border-white/5 hover:text-on-surface'
+                }`}
+              >
+                {themeVariants[themeKey].label}
+              </button>
+            ))}
+          </div>
+        </div>
 
-              <div className="relative z-10 flex items-center justify-between">
-                <div className="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center border border-primary/20 text-primary">
-                  <span className="material-symbols-outlined text-[24px]">support_agent</span>
-                </div>
-                <span className="font-label-sm text-xs text-primary font-mono bg-primary-container/20 px-3 py-1 rounded-full border border-primary/20">
-                  Sub-20ms Sync
-                </span>
+        {/* Live Mock Tenant Portal Card */}
+        <div
+          className={`p-6 md:p-8 rounded-xl border transition-all duration-500 space-y-6 ${themeVariants[activePreviewTheme].border} ${themeVariants[activePreviewTheme].bg}`}
+        >
+          <div className="flex items-center justify-between pb-4 border-b border-white/10">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center font-bold text-white text-xs">
+                {activePreviewTheme === 'emerald' ? 'PINE' : activePreviewTheme === 'amber' ? 'ACME' : 'NORD'}
               </div>
-
-              <div className="relative z-10 space-y-3">
-                <h3 className="font-headline-lg text-headline-lg text-on-surface">
-                  Support & Helpdesk Hub
-                </h3>
-                <p className="font-body-md text-body-md text-on-surface-variant max-w-lg leading-relaxed">
-                  Enterprise customer support and ticketing platform built for multi-tenant deployments. Custom CNAME routing, automated SSL certificate generation, and real-time SLA tracking.
-                </p>
-                <div className="pt-2 flex items-center gap-3">
-                  <button
-                    onClick={onInquireClick}
-                    className="inline-flex items-center text-primary font-body-md text-body-md hover:text-primary-fixed transition-colors cursor-pointer"
-                  >
-                    Deploy Support Hub <span className="material-symbols-outlined ml-2 text-[16px]">arrow_forward</span>
-                  </button>
+              <div>
+                <div className="font-semibold text-sm text-white">
+                  {activePreviewTheme === 'emerald' ? 'Pine Forest Corp' : activePreviewTheme === 'amber' ? 'Acme Global Ventures' : 'Nordic Mineral Systems'}
                 </div>
-              </div>
-            </div>
-
-            {/* Secondary Cards (Col 4) */}
-            <div className="col-span-1 md:col-span-4 flex flex-col gap-gutter">
-              {/* Card 1: Dynamic Theming */}
-              <div className="glass-panel rounded-2xl p-6 flex-1 relative overflow-hidden group">
-                <div className="absolute inset-0 z-0 bg-surface-container-highest/30" />
-                <div className="relative z-10 h-full flex flex-col justify-between">
-                  <div className="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center border border-primary/20 mb-8 text-primary">
-                    <span className="material-symbols-outlined">palette</span>
-                  </div>
-                  <div>
-                    <h4 className="font-body-lg text-body-lg text-on-surface mb-2">Dynamic Theming Engine</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant text-sm">
-                      Runtime CSS token inheritance, logo injection, and dark-mode compliance per tenant.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 2: Identity & SSO */}
-              <div className="glass-panel rounded-2xl p-6 flex-1 relative overflow-hidden group">
-                <div className="absolute inset-0 z-0 bg-surface-container-highest/30" />
-                <div className="relative z-10 h-full flex flex-col justify-between">
-                  <div className="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center border border-primary/20 mb-8 text-primary">
-                    <span className="material-symbols-outlined">shield_lock</span>
-                  </div>
-                  <div>
-                    <h4 className="font-body-lg text-body-lg text-on-surface mb-2">Enterprise Identity (SSO)</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant text-sm">
-                      SAML 2.0, OpenID Connect, RBAC with custom tenant roles, and immutable audit logs.
-                    </p>
-                  </div>
+                <div className="text-[11px] font-mono text-white/60">
+                  https://support.{activePreviewTheme === 'emerald' ? 'pineforest.co' : activePreviewTheme === 'amber' ? 'acme.io' : 'nordic.tech'}
                 </div>
               </div>
             </div>
+            <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-white/10 text-white">
+              Tenant Active
+            </span>
           </div>
 
-          {/* Module Bento Grid 2: Developer Gateway & Webhooks */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter mt-gutter">
-            {/* Secondary Cards Left (Col 4) */}
-            <div className="col-span-1 md:col-span-4 flex flex-col gap-gutter">
-              {/* Card 3: Webhook Delivery */}
-              <div className="glass-panel rounded-2xl p-6 flex-1 relative overflow-hidden group">
-                <div className="absolute inset-0 z-0 bg-surface-container-highest/30" />
-                <div className="relative z-10 h-full flex flex-col justify-between">
-                  <div className="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center border border-primary/20 mb-8 text-primary">
-                    <span className="material-symbols-outlined">webhook</span>
-                  </div>
-                  <div>
-                    <h4 className="font-body-lg text-body-lg text-on-surface mb-2">HMAC Webhook Mesh</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant text-sm">
-                      Cryptographically signed event delivery with exponential backoff and replay defense.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 4: SDK Generation */}
-              <div className="glass-panel rounded-2xl p-6 flex-1 relative overflow-hidden group">
-                <div className="absolute inset-0 z-0 bg-surface-container-highest/30" />
-                <div className="relative z-10 h-full flex flex-col justify-between">
-                  <div className="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center border border-primary/20 mb-8 text-primary">
-                    <span className="material-symbols-outlined">terminal</span>
-                  </div>
-                  <div>
-                    <h4 className="font-body-lg text-body-lg text-on-surface mb-2">Multi-Language SDKs</h4>
-                    <p className="font-body-md text-body-md text-on-surface-variant text-sm">
-                      Pre-packaged TypeScript, Go, and Python client wrappers for rapid integration.
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="p-4 rounded-lg bg-black/20 border border-white/5 space-y-1">
+              <div className="text-[10px] font-mono uppercase text-white/60">Active Tickets</div>
+              <div className="text-xl font-bold text-white font-mono">142</div>
             </div>
-
-            {/* Primary Feature Card Right: Developer Gateway (Col 8) */}
-            <div className="col-span-1 md:col-span-8 glass-panel rounded-2xl p-6 md:p-12 relative overflow-hidden group min-h-[460px] flex flex-col justify-between">
-              <div className="absolute inset-0 z-0 bg-gradient-to-br from-surface-container-highest/40 via-surface-container-high/20 to-transparent pointer-events-none" />
-              <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary-container/15 rounded-full blur-[100px] pointer-events-none" />
-
-              <div className="relative z-10 flex items-center justify-between">
-                <div className="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center border border-primary/20 text-primary">
-                  <span className="material-symbols-outlined text-[24px]">api</span>
-                </div>
-                <span className="font-label-sm text-xs text-primary font-mono bg-primary-container/20 px-3 py-1 rounded-full border border-primary/20">
-                  99.99% Uptime SLA
-                </span>
-              </div>
-
-              <div className="relative z-10 space-y-3">
-                <h3 className="font-headline-lg text-headline-lg text-on-surface">
-                  Developer API & Gateway Core
-                </h3>
-                <p className="font-body-md text-body-md text-on-surface-variant max-w-lg leading-relaxed">
-                  High-throughput REST and GraphQL endpoints designed for bi-directional data synchronization, automated tenant provisioning, and event dispatch.
-                </p>
-                <div className="pt-2 flex items-center gap-3">
-                  <button
-                    onClick={onInquireClick}
-                    className="inline-flex items-center text-primary font-body-md text-body-md hover:text-primary-fixed transition-colors cursor-pointer"
-                  >
-                    Explore API Specs <span className="material-symbols-outlined ml-2 text-[16px]">arrow_forward</span>
-                  </button>
-                </div>
-              </div>
+            <div className="p-4 rounded-lg bg-black/20 border border-white/5 space-y-1">
+              <div className="text-[10px] font-mono uppercase text-white/60">SLA Resolution</div>
+              <div className="text-xl font-bold text-white font-mono">99.8%</div>
+            </div>
+            <div className="p-4 rounded-lg bg-black/20 border border-white/5 space-y-1">
+              <div className="text-[10px] font-mono uppercase text-white/60">SSL Security</div>
+              <div className="text-xl font-bold text-white font-mono">Automated TLS</div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Breathe Section (Matching Main Page Exact Aesthetic) */}
-      <section className="w-full py-stack-xl md:py-[200px] bg-surface-container-lowest flex items-center justify-center">
-        <div className="max-w-container-max mx-auto px-margin-mobile text-center">
-          <h2 className="font-headline-xl text-headline-xl md:text-[72px] md:leading-[80px] text-on-surface font-light tracking-tight text-glow">
-            Zero vendor trace.<br />
-            <span className="text-on-surface-variant">Pure enterprise power.</span>
-          </h2>
+      {/* Technical Specifications Matrix */}
+      <div className="space-y-6">
+        <div className="text-center md:text-left space-y-1">
+          <span className="font-label-sm text-xs text-primary uppercase tracking-widest">
+            Architecture Specs
+          </span>
+          <h3 className="font-headline-lg text-headline-lg text-on-surface">
+            Platform Specifications
+          </h3>
         </div>
-      </section>
+
+        <div className="glass-panel rounded-2xl p-6 md:p-8 overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead>
+              <tr className="border-b border-white/10 text-xs font-mono uppercase text-on-surface-variant">
+                <th className="pb-4 font-normal">Layer</th>
+                <th className="pb-4 font-normal">Standard Specification</th>
+                <th className="pb-4 font-normal">Enterprise Dedicated</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5 text-on-surface font-body-md">
+              <tr>
+                <td className="py-4 font-medium text-primary">Custom Domain Routing</td>
+                <td className="py-4 text-on-surface-variant">Automated CNAME with Wildcard Let's Encrypt TLS</td>
+                <td className="py-4">Custom Certificate Import & Dedicated Anycast IP</td>
+              </tr>
+              <tr>
+                <td className="py-4 font-medium text-primary">Tenant Data Isolation</td>
+                <td className="py-4 text-on-surface-variant">Row-Level Security & Cryptographic Tenant Keys</td>
+                <td className="py-4">Dedicated Sharded Database Cluster / VPC</td>
+              </tr>
+              <tr>
+                <td className="py-4 font-medium text-primary">Authentication Protocols</td>
+                <td className="py-4 text-on-surface-variant">Email OTP, OAuth (Google, GitHub, Microsoft)</td>
+                <td className="py-4">SAML 2.0 (Okta, Azure AD), OIDC, SCIM Provisioning</td>
+              </tr>
+              <tr>
+                <td className="py-4 font-medium text-primary">Service Level Agreement</td>
+                <td className="py-4 text-on-surface-variant">99.9% Uptime with 8-hr Support Response</td>
+                <td className="py-4">99.99% Uptime with 1-hr Priority PagerDuty SLA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Bottom Consultation Banner */}
+      <div className="glass-panel rounded-2xl p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden bg-surface-container-low">
+        <div className="space-y-2 max-w-xl">
+          <h3 className="font-headline-lg text-headline-lg text-on-surface">Ready to Scope Your White-Label Deployment?</h3>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            Connect with our engineering team to review custom integration requirements, tenant capacity planning, and deployment timelines.
+          </p>
+        </div>
+        <button
+          onClick={onInquireClick}
+          className="bg-primary-container text-on-primary-container border border-white/10 px-8 py-4 rounded-lg font-body-md text-body-md hover:bg-opacity-80 transition-all whitespace-nowrap cursor-pointer"
+        >
+          Schedule Architecture Session
+        </button>
+      </div>
     </div>
   );
 }
