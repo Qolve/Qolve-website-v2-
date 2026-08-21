@@ -21,7 +21,7 @@ export default function TopNavBar({ onInquireClick }) {
     >
       <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
         <a href="#" className="font-display-lg text-[24px] tracking-tighter text-on-surface hover:opacity-90 transition-opacity">
-          SILVANUS
+          QOLVE
         </a>
         
         <div className="hidden md:flex space-x-gutter">

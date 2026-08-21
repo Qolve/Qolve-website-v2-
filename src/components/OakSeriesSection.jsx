@@ -30,7 +30,7 @@ export default function OakSeriesSection({ onDiscoverCoreClick }) {
 
             <div className="relative z-10">
               <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">
-                Silvanus Core
+                Qolve Core
               </h3>
               <p className="font-body-md text-body-md text-on-surface-variant max-w-sm mb-6">
                 The central hub of your ecosystem, carved from a single block of reclaimed timber.

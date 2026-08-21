@@ -4,7 +4,7 @@ export default function Footer({ onInquireClick }) {
   return (
     <footer className="w-full bg-surface-container-lowest text-primary font-label-sm text-label-sm uppercase tracking-widest border-t border-white/5 flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-md">
       <div className="font-headline-lg text-primary mb-6 md:mb-0">
-        SILVANUS
+        QOLVE
       </div>
       
       <div className="flex flex-wrap justify-center gap-6 md:gap-8 opacity-80 hover:opacity-100 transition-opacity">
@@ -26,7 +26,7 @@ export default function Footer({ onInquireClick }) {
       </div>
       
       <div className="mt-6 md:mt-0 text-on-secondary-fixed-variant">
-        © 2024 SILVANUS LUXURY ECO. ALL RIGHTS RESERVED.
+        © 2024 QOLVE LUXURY ECO. ALL RIGHTS RESERVED.
       </div>
     </footer>
   );

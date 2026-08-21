@@ -41,7 +41,7 @@ export default function FilmModal({ isOpen, onClose }) {
                 <span className="material-symbols-outlined text-[32px]">play_arrow</span>
               </div>
               <div>
-                <h4 className="font-headline-lg text-headline-lg text-on-surface text-glow">The Silvanus Chronicle</h4>
+                <h4 className="font-headline-lg text-headline-lg text-on-surface text-glow">The Qolve Chronicle</h4>
                 <p className="font-body-md text-sm text-on-surface-variant max-w-md mt-1">
                   Witness the fusion of ancient botanical material harvesting and cryogenic liquid glass fabrication.
                 </p>

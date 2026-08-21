@@ -46,7 +46,7 @@ export default function InquireModal({ isOpen, onClose }) {
               <span className="inline-block bg-primary-container/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm uppercase tracking-widest border border-primary/20 mb-3">
                 Bespoke Acquisition
               </span>
-              <h3 className="font-headline-lg text-headline-lg text-on-surface">Inquire with SILVANUS</h3>
+              <h3 className="font-headline-lg text-headline-lg text-on-surface">Inquire with QOLVE</h3>
               <p className="font-body-md text-body-md text-on-surface-variant text-sm mt-1">
                 Private allocations for The Oak Series are strictly limited by sustainable timber harvest cycles.
               </p>
