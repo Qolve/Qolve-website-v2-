@@ -18,21 +18,21 @@ export default function OakSeriesSection({ onDiscoverCoreClick }) {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
           {/* Main Feature Card */}
-          <div className="col-span-1 md:col-span-8 glass-panel rounded-2xl p-6 md:p-12 relative overflow-hidden group min-h-[500px] flex flex-col justify-end">
-            <div className="absolute inset-0 z-0">
-              <img
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"
-                alt="A macro shot of dark, charred oak wood grain texture with liquid glass device."
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkCfh-wHRB5WmY4ZljP_OdhLvmSCSnlaf7djV1i34W4hcnFGm-V9SkqTQZ3Oo6chbHm-EDpkP4n3dA7PVnw-V2-jOUu_IYGvj_CYFE0dVZYeB4k5dIeA4-J3fZaUmzu3qjR8eZUgDAKkIAH06tTEgY-sdyn5YJDy4lvkS0tGicbFqBAJYVGzO-7TMzNRQVeK8P_bNRr6T6frUOxDxXo4BWtTLzx7H86TWrDw3OIBYRPuKhAP0gNeoLbQ"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent" />
+          <div className="col-span-1 md:col-span-8 glass-panel rounded-2xl p-6 md:p-12 relative overflow-hidden group min-h-[440px] flex flex-col justify-between">
+            <div className="absolute inset-0 z-0 bg-gradient-to-br from-surface-container-highest/40 via-surface-container-high/20 to-transparent pointer-events-none" />
+            <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary-container/15 rounded-full blur-[100px] pointer-events-none" />
+
+            <div className="relative z-10">
+              <div className="w-12 h-12 rounded-full bg-primary-container/30 flex items-center justify-center border border-primary/20 mb-8">
+                <span className="material-symbols-outlined text-primary">memory</span>
+              </div>
             </div>
 
             <div className="relative z-10">
               <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">
                 Qolve Platform Hub
               </h3>
-              <p className="font-body-md text-body-md text-on-surface-variant max-w-sm mb-6">
+              <p className="font-body-md text-body-md text-on-surface-variant max-w-md mb-6">
                 The central multi-tenant operating system for your enterprise, equipped with automated client provisioning, role-based access, and real-time telemetry.
               </p>
               <button
